@@ -83,8 +83,8 @@
 ; ----------------------------------------
 ; Extended attributes
 (xattrs) @keyword
-(xattr_entry
-  key: (_) @attribute)
+; Note: xattr_entry key is an anonymous token, cannot capture with field selector
+; Capture the whole entry and value types individually
 (xattr_entry
   value: (quoted_path) @string)
 (xattr_entry
@@ -98,8 +98,8 @@
 
 ; Flags structure
 (flags) @keyword
-(flag_entry
-  key: (_) @attribute)
+; Note: flag_entry key is an anonymous token, cannot capture with field selector
+; Capture value types individually
 (flag_entry
   value: (quoted_path) @string)
 (flag_entry
@@ -208,8 +208,9 @@
 (change_profile_rule_line
   exec: (_) @string.special
   target: (_) @string.special)
+; exec_mode is a child node, not a field named 'mode'
 (change_profile_rule_line
-  mode: (_) @constant.builtin)
+  (exec_mode) @constant.builtin)
 
 (umount_rule_line
   path: (_) @string.special)
