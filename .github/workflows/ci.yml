@@ -39,7 +39,7 @@ jobs:
         uses: tree-sitter/parser-test-action@v2
         with:
           test-rust: true
-          test-node: true
+          test-node: false  # Disabled until tree-sitter runtime supports Node 24
           test-python: true
           test-go: true
           test-swift: true
