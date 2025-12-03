@@ -49,12 +49,13 @@ jobs:
         run: |-
           find examples/apparmor.d/apparmor.d/profiles-* -type f -print > apparmor-profiles.txt
       - name: Parse apparmor.d profiles
+        id: parse_apparmor
         uses: tree-sitter/parse-action@v4
         with:
           files-list: apparmor-profiles.txt
       - uses: actions/upload-artifact@v4
-        if: steps.examples.outputs.failures != ''
+        if: steps.parse_apparmor.outputs.failures != ''
         with:
           name: failures
-          path: ${{steps.examples.outputs.failures}}
+          path: ${{steps.parse_apparmor.outputs.failures}}
 
