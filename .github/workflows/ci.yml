@@ -44,18 +44,21 @@ jobs:
           test-go: true
           test-swift: true
       - name: Set up examples
+        if: runner.os != 'Windows'
         run: |-
           git clone https://github.com/roddhjav/apparmor.d examples/apparmor.d --single-branch --depth=1 --filter=blob:none
       - name: Collect apparmor.d profiles
+        if: runner.os != 'Windows'
         run: |-
           find examples/apparmor.d/apparmor.d/profiles-* -type f -print > apparmor-profiles.txt
       - name: Parse apparmor.d profiles
+        if: runner.os != 'Windows'
         id: parse_apparmor
         uses: tree-sitter/parse-action@v4
         with:
           files-list: apparmor-profiles.txt
       - uses: actions/upload-artifact@v4
-        if: steps.parse_apparmor.outputs.failures != ''
+        if: runner.os != 'Windows' && steps.parse_apparmor.outputs.failures != ''
         with:
           name: failures
           path: ${{steps.parse_apparmor.outputs.failures}}
