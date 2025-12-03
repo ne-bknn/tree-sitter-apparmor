@@ -1,0 +1,2190 @@
+[
+  {
+    "type": "abi_line",
+    "named": true,
+    "fields": {
+      "path": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "angle_path",
+            "named": true
+          },
+          {
+            "type": "pathish",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "eol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "alias_line",
+    "named": true,
+    "fields": {
+      "source": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "bare_path",
+            "named": true
+          },
+          {
+            "type": "quoted_path",
+            "named": true
+          }
+        ]
+      },
+      "target": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "bare_path",
+            "named": true
+          },
+          {
+            "type": "quoted_path",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "eol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "alias_rule_line",
+    "named": true,
+    "fields": {
+      "rest": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "rest_of_line",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "newline",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "all_rule_line",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "eol",
+          "named": true
+        },
+        {
+          "type": "rule_modifiers",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "capability_rule_line",
+    "named": true,
+    "fields": {
+      "rest": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "rest_of_line",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "eol",
+          "named": true
+        },
+        {
+          "type": "rule_modifiers",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "change_profile_rule_line",
+    "named": true,
+    "fields": {
+      "exec": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "pathish",
+            "named": true
+          }
+        ]
+      },
+      "target": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "targetish",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "eol",
+          "named": true
+        },
+        {
+          "type": "exec_mode",
+          "named": true
+        },
+        {
+          "type": "rule_modifiers",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "comment_line",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "eol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "cond_expr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "cond_bool_var",
+          "named": true
+        },
+        {
+          "type": "cond_var",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "conditional_rule",
+    "named": true,
+    "fields": {
+      "condition": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "cond_expr",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "all_rule_line",
+          "named": true
+        },
+        {
+          "type": "capability_rule_line",
+          "named": true
+        },
+        {
+          "type": "change_profile_rule_line",
+          "named": true
+        },
+        {
+          "type": "comment_line",
+          "named": true
+        },
+        {
+          "type": "conditional_rule",
+          "named": true
+        },
+        {
+          "type": "dbus_rule_line",
+          "named": true
+        },
+        {
+          "type": "exec_rule_line",
+          "named": true
+        },
+        {
+          "type": "file_directive_line",
+          "named": true
+        },
+        {
+          "type": "file_rule_line",
+          "named": true
+        },
+        {
+          "type": "include_line",
+          "named": true
+        },
+        {
+          "type": "io_uring_rule_line",
+          "named": true
+        },
+        {
+          "type": "link_rule_line",
+          "named": true
+        },
+        {
+          "type": "mount_rule_line",
+          "named": true
+        },
+        {
+          "type": "mqueue_rule_line",
+          "named": true
+        },
+        {
+          "type": "network_rule_line",
+          "named": true
+        },
+        {
+          "type": "newline",
+          "named": true
+        },
+        {
+          "type": "pivot_root_rule_line",
+          "named": true
+        },
+        {
+          "type": "profile",
+          "named": true
+        },
+        {
+          "type": "ptrace_rule_line",
+          "named": true
+        },
+        {
+          "type": "remount_rule_line",
+          "named": true
+        },
+        {
+          "type": "rlimit_rule_line",
+          "named": true
+        },
+        {
+          "type": "signal_rule_line",
+          "named": true
+        },
+        {
+          "type": "umount_rule_line",
+          "named": true
+        },
+        {
+          "type": "unix_rule_line",
+          "named": true
+        },
+        {
+          "type": "userns_rule_line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "conditional_var_assignment_line",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "conditional_value",
+            "named": true
+          }
+        ]
+      },
+      "var": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "conditional_var",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "eol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dbus_cont_fragment",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "newline",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dbus_fragment",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "dbus_rule_line",
+    "named": true,
+    "fields": {
+      "cont": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "dbus_cont_fragment",
+            "named": true
+          }
+        ]
+      },
+      "first": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "dbus_fragment",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "eol",
+          "named": true
+        },
+        {
+          "type": "rule_modifiers",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "eol",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "newline",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "exec_rule_line",
+    "named": true,
+    "fields": {
+      "mode": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "exec_mode",
+            "named": true
+          }
+        ]
+      },
+      "path": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "pathish",
+            "named": true
+          }
+        ]
+      },
+      "target": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "targetish",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "eol",
+          "named": true
+        },
+        {
+          "type": "priority_prefix",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "file_directive_line",
+    "named": true,
+    "fields": {
+      "mode": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "exec_mode",
+            "named": true
+          }
+        ]
+      },
+      "path": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "pathish",
+            "named": true
+          }
+        ]
+      },
+      "perms": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "perm_set",
+            "named": true
+          }
+        ]
+      },
+      "target": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "targetish",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "eol",
+          "named": true
+        },
+        {
+          "type": "priority_prefix",
+          "named": true
+        },
+        {
+          "type": "rule_modifiers",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "file_rule_line",
+    "named": true,
+    "fields": {
+      "path": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "pathish",
+            "named": true
+          }
+        ]
+      },
+      "perms": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "perm_set",
+            "named": true
+          }
+        ]
+      },
+      "target": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "targetish",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "eol",
+          "named": true
+        },
+        {
+          "type": "priority_prefix",
+          "named": true
+        },
+        {
+          "type": "rule_modifiers",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "flag_entry",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "flags_bare_path",
+            "named": true
+          },
+          {
+            "type": "flags_value",
+            "named": true
+          },
+          {
+            "type": "flags_var_path",
+            "named": true
+          },
+          {
+            "type": "quoted_path",
+            "named": true
+          },
+          {
+            "type": "tunable_var",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "flags",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "flag_entry",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "flags_value",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "include_line",
+    "named": true,
+    "fields": {
+      "path": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "angle_path",
+            "named": true
+          },
+          {
+            "type": "include_path",
+            "named": true
+          },
+          {
+            "type": "pathish",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "eol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "io_uring_rule_line",
+    "named": true,
+    "fields": {
+      "rest": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "rest_of_line",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "eol",
+          "named": true
+        },
+        {
+          "type": "rule_modifiers",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "link_rule_line",
+    "named": true,
+    "fields": {
+      "source": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "pathish",
+            "named": true
+          }
+        ]
+      },
+      "target": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "pathish",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "eol",
+          "named": true
+        },
+        {
+          "type": "priority_prefix",
+          "named": true
+        },
+        {
+          "type": "rule_modifiers",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "modifier_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "capability_rule_line",
+          "named": true
+        },
+        {
+          "type": "change_profile_rule_line",
+          "named": true
+        },
+        {
+          "type": "comment_line",
+          "named": true
+        },
+        {
+          "type": "dbus_rule_line",
+          "named": true
+        },
+        {
+          "type": "exec_rule_line",
+          "named": true
+        },
+        {
+          "type": "file_directive_line",
+          "named": true
+        },
+        {
+          "type": "file_rule_line",
+          "named": true
+        },
+        {
+          "type": "include_line",
+          "named": true
+        },
+        {
+          "type": "link_rule_line",
+          "named": true
+        },
+        {
+          "type": "modifier_block",
+          "named": true
+        },
+        {
+          "type": "mount_rule_line",
+          "named": true
+        },
+        {
+          "type": "network_rule_line",
+          "named": true
+        },
+        {
+          "type": "newline",
+          "named": true
+        },
+        {
+          "type": "ptrace_rule_line",
+          "named": true
+        },
+        {
+          "type": "rule_modifiers",
+          "named": true
+        },
+        {
+          "type": "signal_rule_line",
+          "named": true
+        },
+        {
+          "type": "unix_rule_line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "mount_rule_line",
+    "named": true,
+    "fields": {
+      "rest": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "rest_of_line",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "eol",
+          "named": true
+        },
+        {
+          "type": "rule_modifiers",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "mqueue_rule_line",
+    "named": true,
+    "fields": {
+      "rest": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "rest_of_line",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "eol",
+          "named": true
+        },
+        {
+          "type": "rule_modifiers",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "network_rule_line",
+    "named": true,
+    "fields": {
+      "rest": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "rest_of_line",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "eol",
+          "named": true
+        },
+        {
+          "type": "rule_modifiers",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "pathish",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "bare_path",
+          "named": true
+        },
+        {
+          "type": "quoted_path",
+          "named": true
+        },
+        {
+          "type": "tunable_var",
+          "named": true
+        },
+        {
+          "type": "var_path",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "pivot_root_rule_line",
+    "named": true,
+    "fields": {
+      "oldroot": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "bare_path",
+            "named": true
+          },
+          {
+            "type": "quoted_path",
+            "named": true
+          },
+          {
+            "type": "var_path",
+            "named": true
+          }
+        ]
+      },
+      "path": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "bare_path",
+            "named": true
+          },
+          {
+            "type": "quoted_path",
+            "named": true
+          },
+          {
+            "type": "var_path",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "eol",
+          "named": true
+        },
+        {
+          "type": "rule_modifiers",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "priority_prefix",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "profile",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "abi_line",
+          "named": true
+        },
+        {
+          "type": "all_rule_line",
+          "named": true
+        },
+        {
+          "type": "capability_rule_line",
+          "named": true
+        },
+        {
+          "type": "change_profile_rule_line",
+          "named": true
+        },
+        {
+          "type": "comment_line",
+          "named": true
+        },
+        {
+          "type": "conditional_rule",
+          "named": true
+        },
+        {
+          "type": "dbus_rule_line",
+          "named": true
+        },
+        {
+          "type": "exec_rule_line",
+          "named": true
+        },
+        {
+          "type": "file_directive_line",
+          "named": true
+        },
+        {
+          "type": "file_rule_line",
+          "named": true
+        },
+        {
+          "type": "include_line",
+          "named": true
+        },
+        {
+          "type": "io_uring_rule_line",
+          "named": true
+        },
+        {
+          "type": "link_rule_line",
+          "named": true
+        },
+        {
+          "type": "modifier_block",
+          "named": true
+        },
+        {
+          "type": "mount_rule_line",
+          "named": true
+        },
+        {
+          "type": "mqueue_rule_line",
+          "named": true
+        },
+        {
+          "type": "network_rule_line",
+          "named": true
+        },
+        {
+          "type": "newline",
+          "named": true
+        },
+        {
+          "type": "pivot_root_rule_line",
+          "named": true
+        },
+        {
+          "type": "profile",
+          "named": true
+        },
+        {
+          "type": "profile_header",
+          "named": true
+        },
+        {
+          "type": "profile_header_bare",
+          "named": true
+        },
+        {
+          "type": "profile_header_hat",
+          "named": true
+        },
+        {
+          "type": "profile_header_hat_keyword",
+          "named": true
+        },
+        {
+          "type": "ptrace_rule_line",
+          "named": true
+        },
+        {
+          "type": "remount_rule_line",
+          "named": true
+        },
+        {
+          "type": "rlimit_rule_line",
+          "named": true
+        },
+        {
+          "type": "signal_rule_line",
+          "named": true
+        },
+        {
+          "type": "umount_rule_line",
+          "named": true
+        },
+        {
+          "type": "unix_rule_line",
+          "named": true
+        },
+        {
+          "type": "userns_rule_line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "profile_header",
+    "named": true,
+    "fields": {
+      "attachment": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "pathish",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "pathish",
+            "named": true
+          },
+          {
+            "type": "profile_name",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "flags",
+          "named": true
+        },
+        {
+          "type": "xattrs",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "profile_header_bare",
+    "named": true,
+    "fields": {
+      "attachment": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "pathish",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ns_profile_name",
+            "named": true
+          },
+          {
+            "type": "pathish",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "flags",
+          "named": true
+        },
+        {
+          "type": "xattrs",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "profile_header_hat",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "profile_name",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "flags",
+          "named": true
+        },
+        {
+          "type": "xattrs",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "profile_header_hat_keyword",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "profile_name",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "flags",
+          "named": true
+        },
+        {
+          "type": "xattrs",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ptrace_rule_line",
+    "named": true,
+    "fields": {
+      "rest": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "rest_of_line",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "eol",
+          "named": true
+        },
+        {
+          "type": "rule_modifiers",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "remount_rule_line",
+    "named": true,
+    "fields": {
+      "path": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "pathish",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "eol",
+          "named": true
+        },
+        {
+          "type": "rule_modifiers",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "rlimit_rule_line",
+    "named": true,
+    "fields": {
+      "limit": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "rlimit_name",
+            "named": true
+          }
+        ]
+      },
+      "unit": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "rlimit_unit",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "rlimit_value",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "eol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "rule_modifiers",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "signal_cont_fragment",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "newline",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "signal_fragment",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "signal_rule_line",
+    "named": true,
+    "fields": {
+      "cont": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "signal_cont_fragment",
+            "named": true
+          }
+        ]
+      },
+      "first": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "signal_fragment",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "eol",
+          "named": true
+        },
+        {
+          "type": "rule_modifiers",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "root": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "abi_line",
+          "named": true
+        },
+        {
+          "type": "alias_line",
+          "named": true
+        },
+        {
+          "type": "alias_rule_line",
+          "named": true
+        },
+        {
+          "type": "all_rule_line",
+          "named": true
+        },
+        {
+          "type": "capability_rule_line",
+          "named": true
+        },
+        {
+          "type": "change_profile_rule_line",
+          "named": true
+        },
+        {
+          "type": "comment_line",
+          "named": true
+        },
+        {
+          "type": "conditional_var_assignment_line",
+          "named": true
+        },
+        {
+          "type": "dbus_rule_line",
+          "named": true
+        },
+        {
+          "type": "exec_rule_line",
+          "named": true
+        },
+        {
+          "type": "file_directive_line",
+          "named": true
+        },
+        {
+          "type": "file_rule_line",
+          "named": true
+        },
+        {
+          "type": "include_line",
+          "named": true
+        },
+        {
+          "type": "io_uring_rule_line",
+          "named": true
+        },
+        {
+          "type": "link_rule_line",
+          "named": true
+        },
+        {
+          "type": "mount_rule_line",
+          "named": true
+        },
+        {
+          "type": "mqueue_rule_line",
+          "named": true
+        },
+        {
+          "type": "network_rule_line",
+          "named": true
+        },
+        {
+          "type": "newline",
+          "named": true
+        },
+        {
+          "type": "pivot_root_rule_line",
+          "named": true
+        },
+        {
+          "type": "profile",
+          "named": true
+        },
+        {
+          "type": "ptrace_rule_line",
+          "named": true
+        },
+        {
+          "type": "remount_rule_line",
+          "named": true
+        },
+        {
+          "type": "rlimit_rule_line",
+          "named": true
+        },
+        {
+          "type": "signal_rule_line",
+          "named": true
+        },
+        {
+          "type": "tunables_assignment_line",
+          "named": true
+        },
+        {
+          "type": "umount_rule_line",
+          "named": true
+        },
+        {
+          "type": "unix_rule_line",
+          "named": true
+        },
+        {
+          "type": "userns_rule_line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "targetish",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier_with_vars",
+          "named": true
+        },
+        {
+          "type": "pathish",
+          "named": true
+        },
+        {
+          "type": "profile_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tunables_assignment_line",
+    "named": true,
+    "fields": {
+      "op": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "tunable_op",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "tunable_value",
+            "named": true
+          }
+        ]
+      },
+      "var": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "tunable_var",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "eol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "umount_rule_line",
+    "named": true,
+    "fields": {
+      "path": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "pathish",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "eol",
+          "named": true
+        },
+        {
+          "type": "rule_modifiers",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "unix_cont_fragment",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "newline",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "unix_fragment",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "unix_rule_line",
+    "named": true,
+    "fields": {
+      "cont": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "unix_cont_fragment",
+            "named": true
+          }
+        ]
+      },
+      "first": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "unix_fragment",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "eol",
+          "named": true
+        },
+        {
+          "type": "rule_modifiers",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "userns_rule_line",
+    "named": true,
+    "fields": {
+      "rest": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "rest_of_line",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "eol",
+          "named": true
+        },
+        {
+          "type": "rule_modifiers",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "xattr_entry",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "flags_bare_path",
+            "named": true
+          },
+          {
+            "type": "flags_value",
+            "named": true
+          },
+          {
+            "type": "flags_var_path",
+            "named": true
+          },
+          {
+            "type": "quoted_path",
+            "named": true
+          },
+          {
+            "type": "tunable_var",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "xattrs",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "xattr_entry",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "#include",
+    "named": false
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": ",",
+    "named": false
+  },
+  {
+    "type": "->",
+    "named": false
+  },
+  {
+    "type": "<=",
+    "named": false
+  },
+  {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": "^",
+    "named": false
+  },
+  {
+    "type": "abi",
+    "named": false
+  },
+  {
+    "type": "alias",
+    "named": false
+  },
+  {
+    "type": "all",
+    "named": false
+  },
+  {
+    "type": "allow",
+    "named": false
+  },
+  {
+    "type": "angle_path",
+    "named": true
+  },
+  {
+    "type": "audit",
+    "named": false
+  },
+  {
+    "type": "bare_path",
+    "named": true
+  },
+  {
+    "type": "capability",
+    "named": false
+  },
+  {
+    "type": "change_profile",
+    "named": false
+  },
+  {
+    "type": "comment",
+    "named": true,
+    "extra": true
+  },
+  {
+    "type": "cond_bool_var",
+    "named": true
+  },
+  {
+    "type": "cond_var",
+    "named": true
+  },
+  {
+    "type": "conditional_value",
+    "named": true
+  },
+  {
+    "type": "conditional_var",
+    "named": true
+  },
+  {
+    "type": "dbus",
+    "named": false
+  },
+  {
+    "type": "defined",
+    "named": false
+  },
+  {
+    "type": "deny",
+    "named": false
+  },
+  {
+    "type": "else",
+    "named": false
+  },
+  {
+    "type": "exec_mode",
+    "named": true
+  },
+  {
+    "type": "exists",
+    "named": false
+  },
+  {
+    "type": "file",
+    "named": false
+  },
+  {
+    "type": "flags",
+    "named": false
+  },
+  {
+    "type": "flags_bare_path",
+    "named": true
+  },
+  {
+    "type": "flags_var_path",
+    "named": true
+  },
+  {
+    "type": "fstype=",
+    "named": false
+  },
+  {
+    "type": "hat",
+    "named": false
+  },
+  {
+    "type": "identifier_with_vars",
+    "named": true
+  },
+  {
+    "type": "if",
+    "named": false
+  },
+  {
+    "type": "include",
+    "named": false
+  },
+  {
+    "type": "include_path",
+    "named": true
+  },
+  {
+    "type": "io_uring",
+    "named": false
+  },
+  {
+    "type": "link",
+    "named": false
+  },
+  {
+    "type": "mount",
+    "named": false
+  },
+  {
+    "type": "mqueue",
+    "named": false
+  },
+  {
+    "type": "network",
+    "named": false
+  },
+  {
+    "type": "newline",
+    "named": true
+  },
+  {
+    "type": "not",
+    "named": false
+  },
+  {
+    "type": "ns_profile_name",
+    "named": true
+  },
+  {
+    "type": "oldroot=",
+    "named": false
+  },
+  {
+    "type": "options=",
+    "named": false
+  },
+  {
+    "type": "other",
+    "named": false
+  },
+  {
+    "type": "owner",
+    "named": false
+  },
+  {
+    "type": "perm_set",
+    "named": true
+  },
+  {
+    "type": "pivot_root",
+    "named": false
+  },
+  {
+    "type": "priority",
+    "named": false
+  },
+  {
+    "type": "profile",
+    "named": false
+  },
+  {
+    "type": "profile_name",
+    "named": true
+  },
+  {
+    "type": "prompt",
+    "named": false
+  },
+  {
+    "type": "ptrace",
+    "named": false
+  },
+  {
+    "type": "quoted_path",
+    "named": true
+  },
+  {
+    "type": "remount",
+    "named": false
+  },
+  {
+    "type": "rest_of_line",
+    "named": true
+  },
+  {
+    "type": "rlimit",
+    "named": false
+  },
+  {
+    "type": "rlimit_name",
+    "named": true
+  },
+  {
+    "type": "rlimit_unit",
+    "named": true
+  },
+  {
+    "type": "rlimit_value",
+    "named": true
+  },
+  {
+    "type": "safe",
+    "named": false
+  },
+  {
+    "type": "set",
+    "named": false
+  },
+  {
+    "type": "signal",
+    "named": false
+  },
+  {
+    "type": "subset",
+    "named": false
+  },
+  {
+    "type": "tunable_op",
+    "named": true
+  },
+  {
+    "type": "tunable_value",
+    "named": true
+  },
+  {
+    "type": "tunable_var",
+    "named": true
+  },
+  {
+    "type": "umount",
+    "named": false
+  },
+  {
+    "type": "unix",
+    "named": false
+  },
+  {
+    "type": "unsafe",
+    "named": false
+  },
+  {
+    "type": "userns",
+    "named": false
+  },
+  {
+    "type": "var_path",
+    "named": true
+  },
+  {
+    "type": "xattrs",
+    "named": false
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "}",
+    "named": false
+  }
+]
