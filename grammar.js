@@ -43,7 +43,7 @@ module.exports = grammar({
       $.rlimit_rule_line,
       $.file_directive_line,
       $.profile,
-      $.newline
+      $.newline,
     )),
 
     // Lines
@@ -52,13 +52,13 @@ module.exports = grammar({
       choice('include', '#include'),
       optional(seq('if', 'exists')),
       field('path', choice($.angle_path, $.pathish, $.include_path)),
-      $.eol
+      $.eol,
     )),
 
     abi_line: $ => seq(
       'abi',
       field('path', choice($.angle_path, $.pathish)),
-      $.eol
+      $.eol,
     ),
 
     // Tunables assignments like: @{var} = value  or  @{var} += value
@@ -66,7 +66,7 @@ module.exports = grammar({
       field('var', $.tunable_var),
       field('op', $.tunable_op),
       field('value', $.tunable_value),
-      $.eol
+      $.eol,
     )),
 
     // Conditional variable assignments like: $FOO=true  or  ${VAR}=false  or  @FOO=""
@@ -76,7 +76,7 @@ module.exports = grammar({
       '=',
       /\s*/,
       field('value', $.conditional_value),
-      $.eol
+      $.eol,
     )),
 
     // Top-level alias mapping
@@ -85,7 +85,7 @@ module.exports = grammar({
       field('source', choice($.quoted_path, $.bare_path)),
       '->',
       field('target', choice($.quoted_path, $.bare_path)),
-      $.eol
+      $.eol,
     ),
 
     // Profile block
@@ -121,9 +121,9 @@ module.exports = grammar({
         $.exec_rule_line,
         $.file_rule_line,
         $.profile,
-        $.newline
+        $.newline,
       )),
-      '}'
+      '}',
     ),
 
     // Modifier block: audit { rules }, deny { rules }, owner { rules }, etc.
@@ -148,9 +148,9 @@ module.exports = grammar({
         $.change_profile_rule_line,
         $.file_directive_line,
         $.modifier_block,
-        $.newline
+        $.newline,
       )),
-      '}'
+      '}',
     )),
 
     profile_header: $ => seq(
@@ -159,7 +159,7 @@ module.exports = grammar({
       optional(repeat1(field('attachment', $.pathish))),
       optional($.xattrs),
       optional($.flags),
-      '{'
+      '{',
     ),
 
     // Support bare profile headers like
@@ -172,7 +172,7 @@ module.exports = grammar({
       optional(repeat1(field('attachment', $.pathish))),
       optional($.xattrs),
       optional($.flags),
-      '{'
+      '{',
     ),
 
     // Namespace-prefixed profile name: :ns:name or :ns://name
@@ -186,7 +186,7 @@ module.exports = grammar({
       field('name', $.profile_name),
       optional($.xattrs),
       optional($.flags),
-      '{'
+      '{',
     ),
 
     // Hat (child) profile header with hat keyword
@@ -197,7 +197,7 @@ module.exports = grammar({
       field('name', $.profile_name),
       optional($.xattrs),
       optional($.flags),
-      '{'
+      '{',
     ),
 
     // Exec transition rule: PATH MODE [-> TARGET] [,]
@@ -209,7 +209,7 @@ module.exports = grammar({
         field('path', $.pathish),
         field('mode', $.exec_mode),
         optional(seq('->', field('target', $.targetish))),
-        $.eol
+        $.eol,
       ),
       // Front-exec: [unsafe|safe] MODE PATH [-> TARGET]
       seq(
@@ -218,8 +218,8 @@ module.exports = grammar({
         field('mode', $.exec_mode),
         field('path', $.pathish),
         optional(seq('->', field('target', $.targetish))),
-        $.eol
-      )
+        $.eol,
+      ),
     ),
     // Minimal file rule: [priority=N] [modifiers] [owner|other] (PATH PERMS | PERMS PATH) [,]
     file_rule_line: $ => seq(
@@ -229,15 +229,15 @@ module.exports = grammar({
       choice(
         seq(
           field('path', $.pathish),
-          field('perms', $.perm_set)
+          field('perms', $.perm_set),
         ),
         seq(
           field('perms', $.perm_set),
-          field('path', $.pathish)
-        )
+          field('path', $.pathish),
+        ),
       ),
       optional(seq('->', field('target', $.targetish))),
-      $.eol
+      $.eol,
     ),
 
     // Specific rule stubs - use precedence to prefer keywords over generic paths
@@ -250,14 +250,14 @@ module.exports = grammar({
       optional($.rule_modifiers),
       'userns',
       optional(field('rest', $.rest_of_line)),
-      $.eol
+      $.eol,
     )),
     umount_rule_line: $ => seq(
       optional($.rule_modifiers),
       'umount',
       optional(seq('fstype=', token(/[^,\s\r\n]+/))),
       optional(field('path', $.pathish)),
-      $.eol
+      $.eol,
     ),
     ptrace_rule_line: $ => prec(2, seq(optional($.rule_modifiers), 'ptrace', optional(field('rest', $.rest_of_line)), $.eol)),
     // Signal rule with multiline continuation support
@@ -266,7 +266,7 @@ module.exports = grammar({
       'signal',
       optional(field('first', $.signal_fragment)),
       repeat(field('cont', $.signal_cont_fragment)),
-      $.eol
+      $.eol,
     )),
     signal_fragment: $ => token(/[^\r\n]+/),
     signal_cont_fragment: $ => seq($.newline, /[\t ]+/, token(/[^\r\n]+/)),
@@ -277,21 +277,21 @@ module.exports = grammar({
     file_directive_line: $ => prec(2, choice(
       seq(
         optional($.priority_prefix), optional($.rule_modifiers), optional(choice('owner', 'other')), 'file',
-        $.eol
+        $.eol,
       ),
       seq(
         optional($.priority_prefix), optional($.rule_modifiers), optional(choice('owner', 'other')), 'file',
         field('perms', $.perm_set),
         field('path', $.pathish),
         optional(seq('->', field('target', $.targetish))),
-        $.eol
+        $.eol,
       ),
       seq(
         optional($.priority_prefix), optional($.rule_modifiers), optional(choice('owner', 'other')), 'file',
         field('path', $.pathish),
         field('perms', $.perm_set),
         optional(seq('->', field('target', $.targetish))),
-        $.eol
+        $.eol,
       ),
       // Front-exec with file keyword: file [unsafe|safe] EXEC_MODE PATH
       seq(
@@ -300,8 +300,8 @@ module.exports = grammar({
         field('mode', $.exec_mode),
         field('path', $.pathish),
         optional(seq('->', field('target', $.targetish))),
-        $.eol
-      )
+        $.eol,
+      ),
     )),
     mount_rule_line: $ => prec(2, seq(optional($.rule_modifiers), 'mount', optional(field('rest', $.rest_of_line)), $.eol)),
     remount_rule_line: $ => seq(
@@ -309,19 +309,19 @@ module.exports = grammar({
       'remount',
       optional(seq('options=', '(', token(/[^)\r\n]*/), ')')), // options=(...)
       optional(field('path', $.pathish)),
-      $.eol
+      $.eol,
     ),
     mqueue_rule_line: $ => seq(
       optional($.rule_modifiers),
       'mqueue',
       optional(field('rest', $.rest_of_line)),
-      $.eol
+      $.eol,
     ),
     io_uring_rule_line: $ => seq(
       optional($.rule_modifiers),
       'io_uring',
       optional(field('rest', $.rest_of_line)),
-      $.eol
+      $.eol,
     ),
     // Multiline dbus rule: first line after 'dbus', then one or more continued indented lines, ending with optional comma
     // Can also be bare "dbus,"
@@ -330,7 +330,7 @@ module.exports = grammar({
       'dbus',
       optional(field('first', $.dbus_fragment)),
       repeat(field('cont', $.dbus_cont_fragment)),
-      $.eol
+      $.eol,
     ),
     // Multiline unix rule: similar to dbus, can span multiple indented lines
     unix_rule_line: $ => prec(2, seq(
@@ -338,7 +338,7 @@ module.exports = grammar({
       'unix',
       optional(field('first', $.unix_fragment)),
       repeat(field('cont', $.unix_cont_fragment)),
-      $.eol
+      $.eol,
     )),
     // A permissive catch-all directive occasionally used in profiles: `all,`
     // Allow modifiers like `allow all,` or `deny all,`
@@ -352,7 +352,7 @@ module.exports = grammar({
       field('source', $.pathish),
       '->',
       field('target', $.pathish),
-      $.eol
+      $.eol,
     )),
     change_profile_rule_line: $ => prec(2, seq(
       optional($.rule_modifiers),
@@ -361,7 +361,7 @@ module.exports = grammar({
       optional($.exec_mode),
       optional(field('exec', $.pathish)),
       optional(seq('->', field('target', $.targetish))),
-      $.eol
+      $.eol,
     )),
 
     // Resource limit rules: set rlimit LIMIT <= VALUE [UNIT],
@@ -372,7 +372,7 @@ module.exports = grammar({
       '<=',
       field('value', $.rlimit_value),
       optional(field('unit', $.rlimit_unit)),
-      $.eol
+      $.eol,
     )),
     rlimit_name: $ => token(/[a-z_]+/),
     rlimit_value: $ => token(/-?[0-9]+|infinity/),
@@ -409,7 +409,7 @@ module.exports = grammar({
         $.file_directive_line,
         $.conditional_rule,
         $.profile,
-        $.newline
+        $.newline,
       )),
       '}',
       optional(seq(
@@ -441,10 +441,10 @@ module.exports = grammar({
             $.file_directive_line,
             $.conditional_rule,
             $.profile,
-            $.newline
-          )), '}')
-        )
-      ))
+            $.newline,
+          )), '}'),
+        ),
+      )),
     )),
 
     // Condition expression: [not]* (defined @VAR | $VAR)
@@ -452,13 +452,13 @@ module.exports = grammar({
       repeat('not'),
       choice(
         seq('defined', $.cond_var),
-        $.cond_bool_var
-      )
+        $.cond_bool_var,
+      ),
     ),
     cond_var: $ => token(seq('@', /[A-Za-z_][A-Za-z0-9_]*/)),
     cond_bool_var: $ => token(choice(
       seq('$', /[A-Za-z_][A-Za-z0-9_]*/),
-      seq('${', /[A-Za-z_][A-Za-z0-9_]*/, '}')
+      seq('${', /[A-Za-z_][A-Za-z0-9_]*/, '}'),
     )),
 
 
@@ -487,7 +487,7 @@ module.exports = grammar({
 
     // Profile name: allows embedded @{var} patterns
     // Must not start with lone { but @{ is okay
-    // Not a token so keywords can take precedence  
+    // Not a token so keywords can take precedence
     profile_name: $ => /([^\s\{\r\n]|@\{[^}]+\})+/,
 
     // xattrs: support extended attributes in profile headers
@@ -499,7 +499,7 @@ module.exports = grammar({
       '(',
       $.xattr_entry,
       repeat(seq(optional(','), $.xattr_entry)),
-      ')'
+      ')',
     ),
     xattr_entry: $ => seq(
       field('key', token(/[A-Za-z0-9_.+\-]+/)),
@@ -508,8 +508,8 @@ module.exports = grammar({
         $.flags_bare_path,
         $.flags_var_path,
         $.tunable_var,
-        $.flags_value
-      ))))
+        $.flags_value,
+      )))),
     ),
 
     // flags: support entries like 'key' or 'key=value' and dotted keys
@@ -521,7 +521,7 @@ module.exports = grammar({
       '(',
       $.flag_entry,
       repeat(seq(optional(','), $.flag_entry)),
-      ')'
+      ')',
     ),
     flag_entry: $ => seq(
       field('key', token(/[A-Za-z0-9_.+\-]+/)),
@@ -530,8 +530,8 @@ module.exports = grammar({
         $.flags_bare_path,
         $.flags_var_path,
         $.tunable_var,
-        $.flags_value
-      ))))
+        $.flags_value,
+      )))),
     ),
     // Bare identifier values for flags (e.g., kill.signal=hup)
     flags_value: $ => token(/[A-Za-z0-9_.+\-]+/),
@@ -556,7 +556,7 @@ module.exports = grammar({
     // "deny audit" is invalid, "audit deny" is valid
     rule_modifiers: $ => choice(
       seq('audit', optional(choice('allow', 'deny', 'prompt'))),
-      choice('allow', 'deny', 'prompt')
+      choice('allow', 'deny', 'prompt'),
     ),
     // File permission set; exclude comma and assignment operators
     // Valid permissions: r, w, a, l, m, k, x and exec modes like px, ix, ux, cx
@@ -571,7 +571,7 @@ module.exports = grammar({
       'pivot_root',
       optional(seq('oldroot=', field('oldroot', choice($.quoted_path, $.bare_path, $.var_path)), /\s+/)),
       optional(field('path', choice($.quoted_path, $.bare_path, $.var_path))),
-      $.eol
+      $.eol,
     ),
 
     // Tunables tokens
@@ -583,13 +583,13 @@ module.exports = grammar({
     conditional_var: $ => token(choice(
       seq('$', /[A-Za-z_][A-Za-z0-9_]*/),
       seq('${', /[A-Za-z_][A-Za-z0-9_]*/, '}'),
-      seq('@', /[A-Za-z_][A-Za-z0-9_]*/)
+      seq('@', /[A-Za-z_][A-Za-z0-9_]*/),
     )),
     // Conditional values must be true/false (any case) or quoted string
     conditional_value: $ => token(choice(
       seq('"', /[^"\r\n]*/, '"'),
       /[tT][rR][uU][eE]/,
-      /[fF][aA][lL][sS][eE]/
+      /[fF][aA][lL][sS][eE]/,
     )),
     // Helpers
     pathish: $ => choice($.quoted_path, $.bare_path, $.var_path, $.tunable_var),
@@ -597,8 +597,8 @@ module.exports = grammar({
     eol: $ => seq(
       optional(','),
       optional($.comment),
-      $.newline
+      $.newline,
     ),
-  }
+  },
 });
 
