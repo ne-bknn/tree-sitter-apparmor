@@ -10,6 +10,7 @@
         "apparmor",
         "aa"
       ],
+      "first-line-regex": "#\\s+vim:ft=apparmor.*",
       "injection-regex": "^apparmor$",
       "class-name": "TreeSitterApparmor"
     }
